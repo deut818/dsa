@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Deut818 Systems Group{% endblock %}</title>
+    <meta name="description" content="Deut818 Systems (U) is the operational arm of Alp Systems HB(Sweden) whose main goal is to promote and implement technological transfer projects in Africa through partnerships with other European based companies with intrest in investing in Africa. The major areas of intrest include Integrated Systems, Sustainable Solutions, Transport and Logistics, Security surveillance, Access control, data analytics, Biometrics,forensics and facial recognition, tourism and infrastructure development.">
+    <meta name="keyword" content="transport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    {% include 'shop/css.html' %}
+    {% block extra_css %}
+    {% endblock %}
+  </head>
+  <body>
+      {% include 'shop/nav.html' %}
+      {% block content %}
+      {% endblock %}
+      {% include 'shop/footer.html' %}
+      {% include 'shop/scripts.html' %}
+      {% block script %}
+      {% endblock %}
+  </body>
+</html>

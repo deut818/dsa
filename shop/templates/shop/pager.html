@@ -1,0 +1,16 @@
+<div class="pager d-flex justify-content-between" style="width:100%;">
+   {% if page.has_previous %}
+    <div class="previous"><a href="?page={{ page.previous_page_number }}" class="btn btn-outline-primary">← Prev</a></div>
+  {% else %}
+    <div class="previous disabled"><a href="javascript:void()" class="btn btn-outline-secondary disabled">← Prev</a></div>
+   {% endif %}
+    <div class="current" style="width:25%;background:white;height:38px;border-radius:25px;border:1px solid red;font-size:17px;color:gray;">
+    <center>{{ page.number }} <span style="color:black;font-size:25px;">|</span> {{ page.paginator.num_pages }}</center>
+    </div>
+    {% if page.has_next %}
+    <div class="next"><a href="?page={{ page.next_page_number }}" class="btn btn-outline-primary">Next →        </a></div>
+    {% else %}
+    <div class="next disabled"><a href="javscript:void" class="btn btn-outline-secondary disabled">Next →        </a></div>
+    {% endif %}
+</div>
+

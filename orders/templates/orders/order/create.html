@@ -1,0 +1,111 @@
+{% extends "shop/base.html" %}
+{% block title %}
+Checkout
+{% endblock %}
+{% block content %}
+<div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="checkout" class="col-lg-9">
+              <div class="box">
+                <form method="post" action=".">
+                  <h1>Checkout</h1>
+                  
+                  <div class="content py-3">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                         <label>Firstname</label> 
+                         {{form.first_name}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+      			 <label>Lastname</label> 
+                        {{form.last_name}}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.row-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                           <label>Email</label>
+                         {{form.email}}
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                           <label>Address</label>
+                          {{form.address}}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.row-->
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <div class="form-group">
+                           <label>Zip/Postal Code</label>
+                          {{form.postal_code}}
+                        </div>
+                      </div>
+                      <div class="col-md-6 col-lg-3">
+                        <div class="form-group">
+                          <label>City Address</label>
+                         {{form.city}}
+                        </div>
+                      </div>
+                     
+                    <!-- /.row-->
+             </div>
+              <div id="order-summary" class="card">
+                <div class="card-header">
+                  <h3 class="mt-4 mb-4">Order summary</h3>
+                </div>
+                <div class="card-body">
+                  <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                     
+                        <tr>
+                          <td>Order subtotal</td>
+                          <th>${{cart.get_total_price|floatformat:'2'}}</th>
+                        </tr>
+                        {% if cart.coupon %}
+                        <tr>
+                          <td>"{{ cart.coupon.code }}" ({{ cart.coupon.discount }}% off)</td>
+                          <th>-${{cart.get_discount|floatformat:'2'}}</th>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                          <td>Tax</td>
+                          <th>$0.00</th>
+                        </tr>
+                        <tr class="total">
+                          <td>Total</td>
+                          <th>${{cart.get_total_price_after_discount|floatformat:'2'}}</th>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+                  <div class="box-footer d-flex justify-content-between"><a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Back to Cart</a>
+                    <button type="submit" class="btn btn-primary">Place Order<i class="fa fa-chevron-right"></i></button>
+                  </div>
+                 {% csrf_token %}
+                </form>
+              </div>
+              <!-- /.box-->
+            </div>
+            <!-- /.col-lg-9-->
+            
+            <!-- /.col-lg-3-->
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+

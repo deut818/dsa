@@ -1,0 +1,68 @@
+{% extends "shop/base.html" %}
+{% load dsg %}
+{% load static %}
+{% block title %}
+{% for p in posts %}
+{{p.title}}
+{% endfor %}
+{% endblock %}
+{% block content %}
+<div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <!--
+            *** LEFT COLUMN ***
+            _________________________________________________________
+            -->
+            <div id="blog-listing" class="col-lg-9">
+           <h2>Posts available ({% total_posts %})</h2>   
+           {% for post in posts %}
+              <!-- post-->
+              <div class="post">
+                <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+                <p class="author-category">By <a href="#">{{post.author}}</a> in <a href="">Category</a></p>
+                <hr>
+                <p class="date-comments"><a href="{{post.get_absolute_url}}"><i class="fa fa-calendar-o"></i> {{post.publish}}</a><a href="{{post.get_absolute_url}}"><i class="fa fa-comment-o"></i> 8 Comments</a></p>
+                <div class="image"><a href="{{post.get_absolute_url}}"><img src="{{post.image}}" alt="{{post.title}}" class="img-fluid"></a></div>
+                <p class="intro">{{post.body|truncatewords:30|linebreaks"}}</p>
+                <p class="read-more"><a href="{{post.get_absolute_url}}" class="btn btn-primary">Continue reading</a></p>
+              </div>
+              <!-- post        -->
+                {% endfor %}
+           
+              <div class="pager d-flex justify-content-between">
+                <div class="previous"><a href="#" class="btn btn-outline-primary">← Older</a></div>
+                <div class="next disabled"><a href="#" class="btn btn-outline-secondary disabled">Newer →        </a></div>
+              </div>
+            </div>
+            <!-- /.col-lg-9-->
+            <!-- *** LEFT COLUMN END ***-->
+            
+            <div class="col-lg-3">
+              <!--
+              *** BLOG MENU ***
+              _________________________________________________________
+              -->
+              <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                  <h3 class="h4 panel-title">Blog</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="nav flex-column nav-pills">
+                    <li><a href="blog.html" class="nav-link">About us</a></li>
+                    <li><a href="blog.html" class="nav-link active">Fashion</a></li>
+                    <li><a href="blog.html" class="nav-link">News and gossip</a></li>
+                    <li><a href="blog.html" class="nav-link">Design</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /.col-lg-3-->
+              <!-- *** BLOG MENU END ***-->
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

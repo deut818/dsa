@@ -1,0 +1,77 @@
+{% extends "main/base.html" %}
+{% block title %}
+  {{title}}
+{% endblock title %}
+{% load static %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1 class="m-0 text-dark">Dashboard</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">Users</li>
+          </ol>
+        </div><!-- /.col -->
+      </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title text-center">DSA Members</h3>
+                </div>
+                <!-- /.card-header -->
+                {% if users %}
+                <div class="card-body p-0">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th style="width: 20px">#</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Telephone</th>
+                          <th>Role</th>
+                          <th>Salary</th>
+                          <th>Allowance</th>
+                          <th>DoB</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          {% for user in users %}
+                          <tr>
+                            <td><img src="{{ user.picture.url }}" class="img-circle elevation-2" alt="" width="40px" height="40px"></td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.tel }}</td>
+                            <td>{{ user.role }}</td>
+                            <td>{{ user.salary }}</td>
+                            <td>{{ user.allowance }}</td>
+                            <td>{{ user.date_of_birth }}</td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                {% else %}
+                  <div class="card-body p-0">
+                      <h3>No Members Registered</h3>
+                  </div>
+                {% endif %}
+                
+              <!-- /.card -->
+            </div>
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock content %}

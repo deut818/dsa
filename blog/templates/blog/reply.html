@@ -1,0 +1,11 @@
+<div class="replies">
+{% for reply in replies %}
+ <div class="reply">
+ <h5>{{reply.user.username|capfirst}}</h5>
+   <p class="posted"><i class="fa fa-clock-o"></i> {{reply.created|timesince}}</p>
+   <p>{{reply.body}}</p>
+ </div>
+{% endfor %}
+<div class="form-group">
+ </div>
+</div>

@@ -1,0 +1,92 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+{{post.title}}
+{% endblock %}
+{% block content %}
+ <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="blog-post" class="col-lg-9">
+              <div class="box">
+                <h1>{{post.title}}</h1>
+                <p class="author-date"><a href="#">{{post.author|capfirst}}</a> |  {{post.publish}} | <a href="{% url 'blog:post_share' post.id %}"><i class="fa fa-envelope"></i></a></p>
+               <p class="tags">Tags: {{ post.tags.all|join:", " }}</p><hr> 
+               <img src="{{post.image.url}}" alt="{{post.title}}" class="img-fluid">
+                <div id="post-content">
+                  <p>{{post.body|linebreaks}}</p>
+                  <blockquote class="blockquote">
+                    <p>{{post.body|linebreaks}}</p>
+                  </blockquote>
+                 
+                <!-- /#post-content-->
+                <div id="comments">
+                  <h4>{{comments.count}} comment{{comments.count|pluralize}}</h4>
+                 
+                 <div class="row comment">
+                   {% for comment in comments %}
+                    <div class="col-md-9 col-lg-10">
+                      <p class="posted">{{comment.user.username|capfirst}} | <i class="fa fa-clock-o"></i> {{comment.created|timesince}}</p>
+                       <div style="color:white;width:75%;height:auto;background:grey;border-radius:25px;padding:10px"><p>{{comment.body|linebreaks}}</p></div>
+                      {% include 'blog/reply.html' %}
+                    </div>
+                    {% empty %}
+                     No comments
+                     {% endfor %}
+                  </div>
+                 
+                  <!-- /.comment-->
+                </div>
+                <!-- /#comments-->
+                <div id="comment-form">
+                 {% if new_comment %}
+                  <h2>Your comment has been added.</h2>
+                  {% else %}
+                 <h4>Leave comment</h4>
+                  <form method="post" action=".">    
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          {{comment_form.body}}
+                        </div>
+                      </div>
+                   </div>{% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-12 text-right">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-comment-o"></i> Post comment</button>
+                      </div>
+                    </div>
+                  </form>
+                 {% endif %}
+                </div>
+                <!-- /#comment-form-->
+              </div>
+              <!-- /.box-->
+            </div>
+            <!-- /#blog-post-->
+            <div class="col-lg-3">
+             
+              <!-- /.col-lg-3-->
+              <!-- *** BLOG MENU END ***-->
+           <h2>Similar posts</h2>
+{% for post in similar_posts %}
+<div class="post">
+                <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+                <p class="author-category"><a href="#">{{post.author|capfirst}}</a></p>
+                <hr>
+                <p class="date-comments"><a href="{{post.get_absolute_url}}"><i class="fa fa-calendar-o"></i> {{post.created}}</a><a href="{{post.get_absolute_url}}"><i class="fa fa-comment-o"></i> {{post.comments.count}} Comment{{post.comments.count|pluralize}}</a></p>
+                <div class="image"><a href="{{post.get_absolute_url}}"><img src="{{post.image.url}}" alt="{{post.title}}" class="img-fluid"></a></div>
+                <p class="intro">{{post.body}}</p>
+                <p class="read-more"><a href="{{post.get_absolute_url}}" class="btn btn-primary">Continue reading</a></p>
+              </div>
+{% empty %}
+There are no similar posts yet.
+{% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+

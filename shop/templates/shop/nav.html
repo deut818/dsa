@@ -1,0 +1,108 @@
+<!-- navbar-->
+    <header class="header mb-5">
+      <div id="top" style="margin-top:50px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 text-center text-lg-right">
+              <ul class="menu list-inline mb-0">
+   		{% if request.user.is_authenticated %}
+		<li class="list-inline-item"><a href="/profile">Welcome {{request.user.username|capfirst}}</a></li>
+                <li class="list-inline-item"><a href="/orders/management">Your Orders</a></li>
+                <li class="list-inline-item"><a href="/accounts/logout">Logout</a></li>
+ 		{% else %}
+                <li class="list-inline-item"><a href="{% url 'login' %}">Login</a></li>
+                <li class="list-inline-item"><a href="{% url 'register' %}">Register</a></li>
+ 		{% endif %}
+                <li class="list-inline-item"><a href="/contact">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% load dsg static %}
+        
+      </div>
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container"><a href="/" class="navbar-brand home"><img src="{% static 'shop/img/deut.PNG' %}" width="30px" height="30px" alt="DSG logo" class="d-none d-md-inline-block"><img src="{% static 'shop/img/deut.PNG' %}" alt="DSG logo" class="d-inline-block d-md-none" width='30px' height='30px'><span class="sr-only">DSG - go to homepage</span></a>
+          <div class="navbar-buttons">
+            <button type="button" data-toggle="collapse" data-target="#navigation" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
+            <button type="button" data-toggle="collapse" data-target="#search" class="btn btn-outline-secondary navbar-toggler"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></button><a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary navbar-toggler"><i class="fa fa-shopping-cart"></i><span class='badge'>{{cart.get_total_quantity}}</span></a>
+          </div>
+          <div id="navigation" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item"><a href="{% url 'shop:index' %}" class="nav-link active">Home</a></li>
+               <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Shop<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>Products & Account</h5>
+                        <ul class="list-unstyled mb-3">
+                         
+                            <li class="nav-item"><a href="{% url 'shop:product_list' %}" class="nav-link">Products</a></li>
+                             <li class="nav-item"><a href="/orders/management" class="nav-link">Profile(Orders and Payments)</a></li>
+                             <li class="nav-item"><a href="{% url 'password_change' %}" class="nav-link">Change Password</a></li>
+                        
+                         </ul>
+                      </div>
+                     
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Blog<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>Blog Posts & News</h5>
+                        <ul class="list-unstyled mb-3">
+                            <li class="nav-item"><a href="{% url 'blog:post_list' %}" class="nav-link">Posts</a></li>
+                          </ul>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown menu-large"><a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">Info<b class="caret"></b></a>
+                <ul class="dropdown-menu megamenu">
+                  <li>
+                    <div class="row">
+                      <div class="col-md-6 col-lg-3">
+                        <h5>Find Us</h5>
+                        <ul class="list-unstyled mb-3">
+                          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+                          
+                          <li class="nav-item"><a href="/faq" class="nav-link">FAQ (Frequently Asked Questions)</a></li>
+                          <li class="nav-item"><a href="/privacy" class="nav-link">Privacy Policy</a></li>
+                        </ul>
+                      </div>
+                    
+                    </div>
+                 </li>
+                </ul>
+              </li>
+            </ul>
+            <div class="navbar-buttons d-flex justify-content-end">
+              <!-- /.nav-collapse-->
+              <div id="search-not-mobile" class="navbar-collapse collapse"></div><a data-toggle="collapse" href="#search" class="btn navbar-btn btn-primary d-none d-lg-inline-block"><span class="sr-only">Toggle search</span><i class="fa fa-search"></i></a>
+              {% with total_items=cart|length %}
+              <div id="basket-overview" class="navbar-collapse collapse d-none d-lg-block"><a href="{% url 'cart:cart_detail' %}" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class='badge'>{{total_items}}</span></a></div>
+              {% endwith %}
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="search" class="collapse">
+         <form role="search" class="ml-auto" action="{% url 'search' %}" method="get">
+            <div class="input-group">
+              <input name="query" type="text" placeholder="search" class="form-control">
+                {% csrf_token %}
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </header>
+

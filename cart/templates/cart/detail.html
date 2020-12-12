@@ -1,0 +1,128 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+Your shopping cart
+{% endblock %}
+{% block content %}
+<div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="basket" class="col-lg-9">
+              <div class="box">
+              
+                  <h1>Shopping cart</h1>
+                  <p class="text-muted">You currently have {{cart.get_total_quantity}} item(s) in your cart.</p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th colspan="2">Product</th>
+                          <th>Quantity</th>
+                          <th>Unit price</th>
+                          <th>Discount</th>
+                          <th colspan="2">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for item in cart %}
+                      {% with product=item.product %}
+                        <tr>
+                          <td><a href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" alt="{{product.name}}"></a></td>
+                          <td><a href="#">{{product.name}}</a></td>
+                          <td>
+                           <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            <button type="submit" class='btn btn-primary'>Update</button>
+                            {% csrf_token %}
+                            </form>
+                          </td>
+                          <td>${{item.price}}</td>
+                          <td>{% if cart.coupon %}
+                          -{{cart.coupon.discount}}%
+                          {% else %}_
+                          {% endif %}
+                          </td>
+                          <td>${{item.total_price}}</td>
+                          <td><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                        </tr>
+                      {% endwith %}
+																					{% endfor %}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th colspan="5">Sub Total</th>
+                          <th colspan="2">${{cart.get_total_price}}</th>
+                        </tr>
+                      </tfoot>
+                    </table>
+                     <div class="box">
+    <div class="box-header">
+       <h4 class="mb-0">Coupon code
+           {% if cart.coupon %}
+           "{{cart.coupon.code}}" ({{cart.coupon.discount}}% off)
+           
+        </h4>
+     </div>
+     <h2>Total: ${{cart.get_total_price_after_discount|floatformat:'2'}}</h2>
+     {% else %}
+     <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+    <form method="post" action="{% url 'coupons:apply' %}">
+     <div class="input-group">
+      {{coupon_apply_form}}<span class="input-group-append">
+       {% csrf_token %}
+       <button type="submit" class="btn btn-primary"><i class="fa fa-gift"></i></button></span>
+     </div>
+     {% endif %}
+     <!-- /input-group-->
+    </form>
+ </div>
+                  </div>
+                  <!-- /.table-responsive-->
+                  <div class="box-footer d-flex justify-content-between flex-column flex-lg-row">
+                    <div class="left"><a href="{% url 'shop:product_list' %}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i> Continue shopping</a></div>
+                    <div class="right">
+                    
+                      <a href="{% url 'orders:order_create' %}"><button class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i></button></a>
+                    </div>
+                  </div>
+                
+              </div>
+              <!-- /.box-->
+             {% if recommended_products %}
+              <div class="row same-height-row">
+                <div class="col-lg-3 col-md-6">
+                  <div class="box same-height">
+                    <h3>You may also like these products</h3>
+                  </div>
+                </div>
+               {% for p in recommended_products %}
+                <div class="col-md-3 col-sm-6">
+                  <div class="product same-height">
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class="front"><a href="{{p.get_absolute_url}}"><img src="{{p.image.url}}" alt="{{p.name}}" class="img-fluid"></a></div>
+                        <div class="back"><a href="{{p.get_absolute_url}}"><img src="{{p.image.url}}" alt="{{p.name}}" class="img-fluid"></a></div>
+                      </div>
+                    </div><a href="{{p.get_absolute_url}}" class="invisible"><img src="{{p.image.url}}" alt="" class="img-fluid"></a>
+                    <div class="text">
+                      <h3>{{p.name}}</h3>
+                      <p class="price">${{p.price}}</p>
+                    </div>
+                  </div>
+                  <!-- /.product-->
+                </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <!-- /.col-lg-9-->
+           
+            <!-- /.col-md-3-->
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+

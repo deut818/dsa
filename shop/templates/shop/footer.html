@@ -1,0 +1,54 @@
+<div id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Pages</h4>
+            <ul class="list-unstyled">
+              <li><a href="/about">About us</a></li>
+              <li><a href="/terms">Terms and conditions</a></li>
+              <li><a href="/faq">FAQ (Frequently Asked Questions)</a></li>
+              <li><a href="/contact">Contact us</a></li>
+            </ul>
+            <hr>
+            <h4 class="mb-3">User section</h4>
+            <ul class="list-unstyled">
+              <li><a href="/accounts/login">Login</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+          </div>
+          <!-- /.col-lg-3-->
+          <div class="col-lg-3 col-md-6">
+            <h4 class="mb-3">Where to find us</h4>
+            <p><strong>Deut818 Systems Group</strong><br>P.O.Box 42<br>Kampala <strong>Uganda</strong><br><br>Ndejje, Rubeire rd<br></p><a href="/contact">Go to contact page</a>
+            <hr class="d-block d-md-none">
+          </div>
+          <!-- /.col-lg-3-->
+          <div class="col-lg-3 col-md-6">
+            
+            <hr>
+            <h4 class="mb-3">Stay in touch</h4>
+            <p class="social"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a><a href="#" class="twitter external"><i class="fa fa-twitter"></i></a><a href="#" class="instagram external"><i class="fa fa-instagram"></i></a><a href="#" class="email external"><i class="fa fa-envelope"></i></a></p>
+          </div>
+          <!-- /.col-lg-3-->
+        </div>
+        <!-- /.row-->
+      </div>
+      <!-- /.container-->
+    </div>
+ <div id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-2 mb-lg-0">
+            <p class="text-center text-lg-left">©2012-<span id="dt"></span> Deut818 Systems Group.</p>
+          </div>
+          <div class="col-lg-6">
+            <p class="text-center text-lg-right">Developed by <a href="mailto:admin@deut818systems.com">DSG WebAdmin</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+var d = new Date();
+document.getElementById("dt").innerHTML = d.getFullYear();
+</script>

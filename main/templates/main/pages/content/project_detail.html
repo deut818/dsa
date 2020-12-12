@@ -1,0 +1,172 @@
+{% extends "main/base.html" %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% block jQuery %}
+<script>
+    var endpoint = '/api/chart/data'
+    var defaultData = []
+    var labels = [];
+    $.ajax({
+        method: "GET",
+        url: endpoint,
+        success: function (data) {
+            labels = data.labels
+            defaultData = data.default
+            var ctx = document.getElementById('myCharty').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '#',
+                        data: defaultData,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    },]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        },]
+                    }
+                }
+            })
+        },
+        error: function (error_data) {
+            console.log("error");
+            console.log(error_data)
+
+        }
+    })
+</script>
+{% endblock jQuery %}
+
+{% load static %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Projects Detail</h3>
+
+                <div class="card-tools">
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i></button>
+                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
+                        title="Remove">
+                        <i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">Estimated budget</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{project.budget}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">Total amount spent</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{project.spent}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="info-box bg-light">
+                                    <div class="info-box-content">
+                                        <span class="info-box-text text-center text-muted">Estimated project
+                                            duration</span>
+                                        <span class="info-box-number text-center text-muted mb-0">{{project.duration}}<span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container-fluid">
+                                <canvas class="chart" id="myCharty"
+                                    style="min-height: 250px; height: 350px; max-height: 250px; max-width: 100%;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-4 order-1 order-md-2">
+                        <h3 class="text-primary"><i class="fas fa-paint-brush"></i> {{project.title}}</h3>
+                        <p class="text-muted">{{project.description}}</p>
+                        <br>
+                        <div class="text-muted">
+                            <p class="text-sm">Client
+                                <b class="d-block">{{project.client}}</b>
+                            </p>
+                            <p class="text-sm">Client Contact
+                                <b class="d-block">{{project.client_contact}}</b>
+                            </p>
+                        </div>
+
+                        <h5 class="mt-5 text-muted">Project files</h5>
+                        {% if project.files %}
+                        <ul class="list-unstyled">
+                            {% for file in project.files.all %}
+                            <li>
+                                <a href="{{file.file.url}}" class="btn-link text-secondary"><i class="far {% if file.extension == doc %}fa-file-word{% elif file.extension == pdf %}fa-file-pdf{% elif file.extension is exc %}fa-file-excel{% elif file.extension is mp4 %}fa-file-video{% elif file.extension is webm %}fa-file-video{% elif file.extension is ppt %}fa-file-powerpoint{% elif file.extension is mp3 %}fa-file-music{% elif file.extension is png %}fa-file-image{% elif file.extension is jpg %}fa-file-image{% elif file.extension is zip %}fa-file-archive{% elif file.extension is csv %}fa-file-csv{% elif file.extension is txt %}fa-file-alt{% else %}fa-file{% endif %}"></i>
+                                    {{file.name}}{{file.extension}}</a>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                        <h3>No files yet</h3>
+                        {% endif %}
+                        
+                        </ul>
+                        <div class="text-center mt-5 mb-3">
+                            <a href="{% url 'main:project_files_add' project.id %}" class="btn btn-sm btn-primary">Add files</a>
+                            <a href="{% url 'main:project_update' project.id %}" class="btn btn-sm btn-warning">Edit Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+
+    </div>
+</section>
+{% endblock %}

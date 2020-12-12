@@ -1,0 +1,173 @@
+{% extends 'shop/base.html' %}
+{% load dsg static %}
+{% block title %}
+DSG Home
+{% endblock %}
+{% block content %}
+<div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="main-slider" class="owl-carousel owl-theme">
+                <div class="item"><img src="{% static 'shop/img/slider1.PNG' %}" alt="dsg" class="img-fluid"></div>
+                <div class="item"><img src="{% static 'shop/img/slider2.PNG' %}" alt="dsg" class="img-fluid"></div>
+                <div class="item"><img src="{% static 'shop/img/slider3.png' %}" alt="dsg" class="img-fluid"></div>
+                <div class="item"><img src="{% static 'shop/img/slider4.PNG' %}" alt="" class="img-fluid"></div>
+                  <div class="item"><img src="{% static 'shop/img/slider5.PNG' %}" alt="" class="img-fluid"></div>
+                 <div class="item"><img src="{% static 'shop/img/slider6.png' %}" alt="" class="img-fluid"></div>
+                  <div class="item"><img src="{% static 'shop/img/slider7.PNG' %}" alt="" class="img-fluid"></div>
+
+                  </div>
+              <!-- /#main-slider-->
+            </div>
+          </div>
+        </div>
+        <!--
+        *** ADVANTAGES HOMEPAGE ***
+        _________________________________________________________
+        -->
+        <div id="advantages">
+          <div class="container">
+            <div class="row mb-4">
+              <div class="col-md-4">
+                <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
+                  <div class="icon"><i class="fa fa-heart"></i></div>
+                  <h3><a href="#">We love our customers</a></h3>
+                  <p class="mb-0">We are here to ensure your best experience with our services.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
+                  <div class="icon"><i class="fa fa-tags"></i></div>
+                  <h3><a href="#">Best prices</a></h3>
+                  <p class="mb-0">We offer the cheapest prices to our customers on all products and services.</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="box clickable d-flex flex-column justify-content-center mb-0 h-100">
+                  <div class="icon"><i class="fa fa-thumbs-up"></i></div>
+                  <h3><a href="#">100% satisfaction guaranteed</a></h3>
+                  <p class="mb-0">We ensure full satifaction on your various needs.</p>
+                </div>
+              </div>
+            </div>
+            <!-- /.row-->
+          </div>
+          <!-- /.container-->
+        </div>
+        <!-- /#advantages-->
+        <!-- *** ADVANTAGES END ***-->
+        <!--
+        *** HOT PRODUCT SLIDESHOW ***
+        _________________________________________________________
+        -->
+       
+        <div id="hot">
+          <div class="box py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="mb-0">Our Services</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="product-slider owl-carousel owl-theme">
+              <div class="item">
+                <div class="product">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front"><a href="#"><img src="{% static 'shop/img/cable1.jpg' %}" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="#"><img src="{% static 'shop/img/cable2.PNG' %}" alt="" class="img-fluid"></a></div>
+                    </div>
+                  </div><a href="detail.html" class="invisible"><img src="{% static 'shop/img/cable1.jpg' %}" alt="" class="img-fluid"></a>
+                  <div class="text">
+                    <h3>Cable Transport Systems (CTS)</h3>
+                    <p class="intro"> 
+                      Deut818 Systems provides Cable transport systems by installation of Cable and tram ways in various parts of the country which is aimed at improving the living standards of Ugandans as well as backing on the transport sector to reduces traffic rates in Uganda so as to ease mobility in the country.
+                    </p>
+                  </div>
+                </div>
+               </div>
+               <div class="item">
+                <div class="product">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front"><a href="#"><img src="{% static 'shop/img/trams.PNG' %}" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="#"><img src="{% static 'shop/img/trams.PNG' %}" alt="" class="img-fluid"></a></div>
+                    </div>
+                  </div><a href="detail.html" class="invisible"><img src="{% static 'shop/img/trams.PNG' %}" alt="" class="img-fluid"></a>
+                  <div class="text">
+                    <h3>Electric Tram Systems</h3>
+                    <p class="intro"> 
+                      Alp Systems in co-operation with Deut818 Systems and other supplier companies budget and plan to establish electric operated tains called trams which are with with variety of functions where by they are the fastest trains which speeds up transport and mobility also favouring the disabled and lame as they provide preserved paramaters for the lame and disabled which makes transport easier than ever.         
+                    </p>
+                  </div>
+                </div>
+               </div>
+                <div class="item">
+                <div class="product">
+                  <div class="flip-container">
+                    <div class="flipper">
+                      <div class="front"><a href="#"><img src="{% static 'shop/img/codex.jpg' %}" alt="" class="img-fluid"></a></div>
+                      <div class="back"><a href="#"><img src="{% static 'shop/img/codex.jpg' %}" alt="" class="img-fluid"></a></div>
+                    </div>
+                  </div><a href="detail.html" class="invisible"><img src="{% static 'shop/img/codex.jpg' %}" alt="" class="img-fluid"></a>
+                  <div class="text">
+                    <h3>Software Development</h3>
+                    <p class="intro"> 
+                      We provide softwares like ecommerce, social media websites and apps like Skyline Chat which is one of our intergrated chat systems, administrative softwares for schools, businesses hospitals, supermarkets, factories and other systems for easy accounting and record keeping where by every record is kept in the database, web design. And much more
+                    </p>
+                  </div>
+                </div>
+               </div>
+      </div>
+        <!--
+        *** GET INSPIRED ***
+        _________________________________________________________
+        -->
+        <div class="container">
+          <div class="col-md-12">
+            <div class="box slideshow">
+              <h3>Gallery</h3>
+              <p class="lead">Take a look through the our visible history</p>
+              <div id="get-inspired" class="owl-carousel owl-theme">
+                <div class="item"><a href="#"><img src="{% static 'shop/img/4.jpg' %}" alt="Gallery" class="img-fluid"></a></div>                <div class="item"><a href="#"><img src="{% static 'shop/img/5.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+                <div class="item"><a href="#"><img src="{% static 'shop/img/6.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+                <div class="item"><a href="#"><img src="{% static 'shop/img/7.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+                <div class="item"><a href="#"><img src="{% static 'shop/img/8.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+                <div class="item"><a href="#"><img src="{% static 'shop/img/9.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+                <div class="item"><a href="#"><img src="{% static 'shop/img/10.jpg' %}" alt="Gallery" class="img-fluid"></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- *** GET INSPIRED END ***-->
+        <!--
+        *** BLOG HOMEPAGE ***
+        _________________________________________________________
+        -->
+        <div class="box text-center">
+          <div class="container">
+            <div class="col-md-12">
+              <h3 class="text-uppercase">Latest Blog Posts</h3>
+              <p class="lead mb-0">Get the latest news from our blog <a href="/blog">Check our blog!</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="col-md-12">
+            <div id="blog-homepage" class="row">
+              {% show_latest_posts %}
+            </div>
+            <!-- /#blog-homepage-->
+          </div>
+        </div>
+        <!-- /.container-->
+        <!-- *** BLOG HOMEPAGE END ***-->
+      </div>
+    </div>
+{% endblock %}
+

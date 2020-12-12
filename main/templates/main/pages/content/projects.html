@@ -1,0 +1,263 @@
+{% extends "main/base.html" %}
+{% block title %}
+{{title}}
+{% endblock title %}
+{% load static %}
+{% block jQuery %}
+<script>
+    var successy = {{ request.session.success }};
+    $(function () {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+        if (successy) {
+            Toast.fire({
+                icon: 'success',
+                title: successy,
+            })
+        }
+        $('.swalDefaultSuccess').click(function () {
+            Toast.fire({
+                icon: 'success',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultInfo').click(function () {
+            Toast.fire({
+                icon: 'info',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultError').click(function () {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultWarning').click(function () {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.swalDefaultQuestion').click(function () {
+            Toast.fire({
+                icon: 'question',
+                title: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+
+        $('.toastrDefaultSuccess').click(function () {
+            toastr.success('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultInfo').click(function () {
+            toastr.info('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultError').click(function () {
+            toastr.error('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+        $('.toastrDefaultWarning').click(function () {
+            toastr.warning('Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
+        });
+
+        $('.toastsDefaultDefault').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultTopLeft').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'topLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomRight').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomRight',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultBottomLeft').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                position: 'bottomLeft',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultAutohide').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                autohide: true,
+                delay: 750,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultNotFixed').click(function () {
+            $(document).Toasts('create', {
+                title: 'Toast Title',
+                fixed: false,
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultFull').click(function () {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                icon: 'fas fa-envelope fa-lg',
+            })
+        });
+        $('.toastsDefaultFullImage').click(function () {
+            $(document).Toasts('create', {
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                image: '../../dist/img/user3-128x128.jpg',
+                imageAlt: 'User Picture',
+            })
+        });
+        $('.toastsDefaultSuccess').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-success',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultInfo').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-info',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultWarning').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-warning',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultDanger').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-danger',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+        $('.toastsDefaultMaroon').click(function () {
+            $(document).Toasts('create', {
+                class: 'bg-maroon',
+                title: 'Toast Title',
+                subtitle: 'Subtitle',
+                body: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.'
+            })
+        });
+    });
+
+    $(function () {
+        $("#example1").DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "responsive": true,
+            "autoWidth": false,
+        });
+    });
+</script>
+{% endblock jQuery %}
+{% block content %}
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">DSA Projects</h3>
+                <a href="{% url 'main:projects_add' %}" class="btn btn-primary float-right">Add Project</a>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Service</th>
+                            <th>Client</th>
+                            <th>Contact</th>
+                            <th>Budget</th>
+                            <th>Spent</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Started</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if projects %}
+                        {% for project in projects %}
+                        <tr>
+                            <td><a href="{{project.get_absolute_url}}">{{project.title}}</a></td>
+                            <td>{{project.service}}</td>
+                            <td>{{project.client}}</td>
+                            <td>{{project.client_contact}}</td>
+                            <td>{{project.budget}}</td>
+                            <td>{{project.spent}}</td>
+                            <td>{{project.duration}}</td>
+                            <td><span
+                                    class="badge {% if project.status == 'PENDING' %}bg-warning{% elif project.status == 'CANCELED' %}bg-danger{% elif project.status == 'COMPLETED' %}bg-success{% elif project.status == 'INPROGRESS' %}bg-primary{% elif project.status == 'PAUSED' %}bg-secondary{% else %}bg-info{% endif %}">{{project.status}}</span>
+                            </td>
+                            <td>{{project.started}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <h3>No Projects available</h3>
+                        {% endif %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Title</th>
+                            <th>Service</th>
+                            <th>Client</th>
+                            <th>Contact</th>
+                            <th>Budget</th>
+                            <th>Spent</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                            <th>Started</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</section>
+{% endblock content %}
